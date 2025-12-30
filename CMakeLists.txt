@@ -9,7 +9,17 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# -------------------------------------
+# Dependencies 
+# -------------------------------------
+
+# Boost is required for root finding
+find_package(Boost REQUIRED)
+
+# -------------------------------------
 # Core solver library
+# -------------------------------------
+
 add_library(barrel_level
     src/Barrel.cpp
     src/VolumeSolver.cpp
@@ -19,6 +29,11 @@ target_include_directories(barrel_level
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
+# Boost.Math is header-only, so linking Boost::boost is sufficient
+target_link_libraries(barrel_level
+    PUBLIC Boost::boost
+)
+
 # Compiler warnings
 if (MSVC)
     target_compile_options(barrel_level PRIVATE /W4)
@@ -26,7 +41,10 @@ else()
     target_compile_options(barrel_level PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
+# -------------------------------------
 # Command-line application
+# -------------------------------------
+
 add_executable(barrel_cli
     apps/barrel_cli.cpp
 )
@@ -35,7 +53,10 @@ target_link_libraries(barrel_cli
     PRIVATE barrel_level
 )
 
+# -------------------------------------
 # Tests
+# -------------------------------------
+
 enable_testing()
 
 add_executable(barrel_tests
