@@ -38,12 +38,12 @@ Build commands:
 Command Line Usage
 ------------------
 ```
-/path/to/build/dir/barrel_cli --radius 0.5 --length 1.0 --removed_vol
+/path/to/build/dir/barrel_cli --radius x --length y --removed_vol z
 ```
 
 Example:
 ```
-  ./build/barrel_cli --radius 0.5 --length 1.0 --removed_vol
+  ./build/barrel_cli --radius 0.5 --length 1.0 --removed_vol 0.5
 ```
 All units must be SI units (e.g. meters -> cubic meters).
 
