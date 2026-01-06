@@ -7,8 +7,8 @@
 
 static void require(bool ok, const char* msg) {
     if(!ok) {
-        std::cerr << "TEST FAILED" << msg << "\n";
-        std::exit(1)
+        std::cerr << "TEST FAILED " << msg << "\n";
+        std::exit(1);
     }
 }
 
