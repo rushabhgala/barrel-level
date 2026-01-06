@@ -30,29 +30,41 @@ Requirements:
 
 Build commands:
 
-  cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+```
+  cmake -S . -B build
   cmake --build build
+```
 
 Command Line Usage
 ------------------
+```
+/path/to/build/dir/barrel_cli --radius 0.5 --length 1.0 --removed_vol
+```
 
 Example:
+```
+  ./build/barrel_cli --radius 0.5 --length 1.0 --removed_vol
+```
+All units must be SI units (e.g. meters -> cubic meters).
 
-  ./build/barrel_cli --radius 0.5 --length 1.0 --volume 0.3
+Running Test
+------------
+A simple test is implemented for sanity check, run it using:
 
-All units must be consistent (e.g. meters -> cubic meters).
+```
+ctest --test-dir build --output-on-failure
+```
 
 Project Structure
 -----------------
 
-  include/   Public headers
-  src/       Solver implementation
+  include/   Header files
+  src/       Geometry and Solver implementation
   apps/      Command-line interface
-  tests/     Verification tests
+  tests/     Simple test
 
 Notes
 -----
 
-The solver enforces both absolute and relative accuracy requirements and
-is designed to be robust near degenerate fill levels.
+The solver enforces both absolute and relative accuracy requirements.
 
